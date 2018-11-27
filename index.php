@@ -23,7 +23,7 @@ include 'wiew/header.php';
       <div class="row">
 
         <!-- Blog Entries Column -->
-        <div class="col-md-8">
+        <div class="col-md-10">
 
           <h1 class="my-4">Hikayeler
 
@@ -33,17 +33,12 @@ include 'wiew/header.php';
           <?php foreach ($anaHikayeler as $hikaye): ?>
             <div class="card mb-4">
               <div class="card-body">
-                <h2 class="card-title"><?php echo $hikaye->hikaye_baslik ?></h2>
-                <p class="card-text"><?php echo mb_substr($hikaye->hikaye_metin,0,100) ?></p>
-                <a href="detay.php?hikaye_id=<?php echo $hikaye->hikaye_id ?>" class="btn btn-primary">Daha Fazla &rarr;</a>
+                <h2 class="card-title" align="center"><?php echo $hikaye->hikaye_baslik ?></h2>
+                <p class="card-text"><?php echo mb_substr($hikaye->hikaye_metin,0,200) ?></p>
+                <a href="altergör.php?hikaye_id=<?php echo $hikaye->hikaye_id ?>&seviye=<?php echo $hikaye->hikaye_seviye ?>" >Devamı &rarr;</a>
 
               </div>
-              <div class="card-footer text-muted">
-                  <a href="profil.php?kullanici=<?php echo $hikaye->kullanici_adi ?>"><?php echo $hikaye->kullanici_adi ?></a>
-                  tarafından <?php echo $hikaye->hikaye_tarih ?> tarihinde yazıldı.
-                  <input type="hidden" name="kullanici_id" value="$hikaye->kullanici_id">
-                <a href="like.php?hikaye_id=<?php echo $hikaye->hikaye_id ?>" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-thumbs-up"></span><i class="fas fa-thumbs-up"></i> <?php echo $hikaye->hikaye_begeni ?> </a>
-              </div>
+
             </div>
 
           <?php endforeach; ?>
@@ -72,33 +67,6 @@ include 'wiew/header.php';
 
 
           <!-- Categories Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Categories</h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#">Web Design</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#">JavaScript</a>
-                    </li>
-                    <li>
-                      <a href="#">CSS</a>
-                    </li>
-                    <li>
-                      <a href="#">Tutorials</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <!-- Side Widget -->
 

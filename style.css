@@ -25,5 +25,42 @@ float: right;
 }
 
 .card{
+	border-radius: 0px;
 
+}
+body{
+	background-image: url("background.jpg");
+}
+.card-title
+{
+	font-family: sans-serif;
+
+}
+.btn-primary
+{
+	background-color: rgb(0, 123, 255,0.5);
+	border: none;
+}
+
+
+.col-md-4{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+textarea
+{
+	height: 200px;
+	    width: 100%;
+	   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	    box-sizing: border-box;
+}
+.col{
+	margin-left: 10px;
+	margin-right:  10px;
+}
+.my-4
+{
+	color: white;
+	text-align: center;
 }

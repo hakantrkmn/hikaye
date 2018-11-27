@@ -57,46 +57,16 @@ include 'wiew/header.php';
 
             <div class="card mb-4">
               <div class="card-body">
-                <h2 class="card-title"><?php echo $anahikaye->hikaye_baslik ?></h2>
-                <p class="card-text"><?php echo $anahikaye->hikaye_metin ?></p>
-                <a href="altergör.php?hikaye_id=<?php echo $anahikaye->hikaye_id ?>&seviye=<?php echo $anahikaye->hikaye_seviye ?>" class="btn btn-primary">alternatifleri gör &rarr;</a>
-                <a href="alterekle.php?parentid=<?php echo $anahikaye->hikaye_id ?>&seviye=<?php echo $anahikaye->hikaye_seviye ?>" class="btn btn-primary">alternatif ekle &rarr;</a>
+                <h2 align="center"class="card-title"><?php echo $anahikaye->hikaye_baslik ?></h2>
+                <p class="card-text"><?php echo $anahikaye->hikaye_metin ?><a href="#"><?php echo $anahikaye->kullanici_adi ?></a>(<?php echo $anahikaye->hikaye_tarih ?>)</p>
+                <a href="altergör.php?hikaye_id=<?php echo $anahikaye->hikaye_id ?>&seviye=<?php echo $anahikaye->hikaye_seviye ?>">alternatifleri gör &rarr;</a>
+                <!–– TIKLANAN HİKAYENİN BİRİNCİ ALTERNATİFİ  ––>
+                <p class="card-text"><?php echo $birincialternatif->alterbir_metin ?><a href="#"><?php echo $birincialternatif->kullanici_adi ?></a>(<?php echo $birincialternatif->alterbir_tarih ?>)</p>
+                <a href="altergör.php?hikaye_id=<?php echo $birincialternatif->alterbir_id ?>&seviye=<?php echo $birincialternatif->alterbir_seviye ?>&id=<?php echo $birincialternatif->alterbir_parentid ?>">alternatifleri gör &rarr;</a>
+<!–– TIKLANAN HİKAYENİN KENDİSİ ––>
+                <p class="card-text"><?php echo $tiklananhikaye->alteriki_metin ?><a href="#"><?php echo $tiklananhikaye->kullanici_adi ?></a>(<?php echo $tiklananhikaye->alteriki_tarih ?>)</p>
               </div>
-              <div class="card-footer text-muted">
-                Posted on <?php echo $anahikaye->hikaye_tarih ?> by
-                <a href="#"><?php echo $anahikaye->kullanici_adi ?></a>
               </div>
-              </div>
-
-              <!–– TIKLANAN HİKAYENİN BİRİNCİ ALTERNATİFİ  ––>
-
-                <div class="card mb-4">
-                <div class="card-body">
-                  <p class="card-text"><?php echo $birincialternatif->alterbir_metin ?></p>
-                  <a href="altergör.php?hikaye_id=<?php echo $birincialternatif->alterbir_id ?>&seviye=<?php echo $birincialternatif->alterbir_seviye ?>&id=<?php echo $birincialternatif->alterbir_parentid ?>" class="btn btn-primary">alternatifleri gör &rarr;</a>
-                  <a href="alterekle.php?parentid=<?php echo $birincialternatif->alterbir_id ?>&seviye=<?php echo $birincialternatif->alterbir_seviye ?>&id=<?php echo $birincialternatif->alterbir_parentid ?>" class="btn btn-primary">alternatif ekle &rarr;</a>
-
-                </div>
-                <div class="card-footer text-muted">
-                  Posted on <?php echo $birincialternatif->alterbir_tarih ?> by
-                  <a href="#"><?php echo $birincialternatif->kullanici_adi ?></a>
-                </div>
-                  </div>
-
-                <!–– TIKLANAN HİKAYENİN KENDİSİ ––>
-                <div class="card mb-4">
-                <div class="card-body">
-                  <p class="card-text"><?php echo $tiklananhikaye->alteriki_metin ?></p>
-                  <a href="hikayeoku.php?hikaye_id=<?php echo $tiklananhikaye->alteriki_id ?>&seviye=<?php echo $tiklananhikaye->alteriki_seviye ?>&id=<?php echo $tiklananhikaye->alteriki_parentid ?>" class="btn btn-primary">Hikayeyi Oku&rarr;</a>
-
-                </div>
-                <div class="card-footer text-muted">
-                  Posted on <?php echo $tiklananhikaye->alteriki_tarih ?> by
-                  <a href="#"><?php echo $tiklananhikaye->kullanici_adi ?></a>
-                </div>
-
-
-            </div>
               </div>
 
 
@@ -106,14 +76,6 @@ include 'wiew/header.php';
 
 
           <!-- Pagination -->
-          <ul class="pagination justify-content-center mb-4">
-            <li class="page-item">
-              <a class="page-link" href="#">&larr; Older</a>
-            </li>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Newer &rarr;</a>
-            </li>
-          </ul>
 
         </div>
 

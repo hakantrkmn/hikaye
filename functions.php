@@ -8,7 +8,7 @@ function istenenHikaye($hikaye_id)
   $story = $connection->prepare("SELECT * FROM anahikaye  NATURAL JOIN kullanici where anahikaye.hikaye_id = $hikaye_id ");
 
   $story->execute();
-  
+
   return $story->fetchAll(PDO::FETCH_OBJ);
 
 }
@@ -60,6 +60,15 @@ function istenenHikaye($hikaye_id)
       }
       else {
         return true;
+      }
+  }
+  function kullanicivarmi()
+  {
+      if (isset($_SESSION['kullanici_adi'])) {
+        return true;
+      }
+      else {
+        return false;
       }
   }
 
