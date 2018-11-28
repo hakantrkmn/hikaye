@@ -80,4 +80,5 @@ function istenenHikaye($hikaye_id)
 
 
 
+
  ?>

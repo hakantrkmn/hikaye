@@ -14,3 +14,12 @@ function charcountupdate(str) {
 
   }
 }
+
+	console.log("asd");
+	const deneme = document.getElementById('deneme').value;
+	console.log(deneme);
+	if(deneme==1)
+	{
+
+	  document.getElementById('asd').style.display = 'block';
+	}

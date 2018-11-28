@@ -65,9 +65,9 @@ include 'wiew/header.php';
                 <div class="card mb-4">
                   <div class="card-body">
                     <h2 align="center"class="card-title"><?php echo $hikaye->hikaye_baslik ?></h2>
-                    <p class="card-text"><?php echo $hikaye->hikaye_metin ?><a href="#"><?php echo $hikaye->kullanici_adi ?></a>(<?php echo $hikaye->hikaye_tarih ?>)</p>
+                    <p class="card-text"><?php echo $hikaye->hikaye_metin ?>...<br> <a href="#"><?php echo $hikaye->kullanici_adi ?></a>(<?php echo $hikaye->hikaye_tarih ?>)</p>
                     <?php if (dolumu($_GET['hikaye_id'])==false): ?>
-                      <a href="alterekle.php?parentid=<?php echo $hikaye->hikaye_id ?>&seviye=<?php echo $hikaye->hikaye_seviye ?>" class="btn btn-primary">alternatif ekle &rarr;</a>
+                      <a href="alterekle.php?parentid=<?php echo $hikaye->hikaye_id ?>&seviye=<?php echo $hikaye->hikaye_seviye ?>" class="btn btn-primary">devam ettir &rarr;</a>
                     <?php endif; ?>
 
                   </div>
@@ -81,27 +81,20 @@ include 'wiew/header.php';
                 <div class="card mb-4">
                   <div class="card-body">
 
-                    <p class="card-text"><?php echo $asilHikaye->hikaye_metin ?><a href="#"><?php echo $asilHikaye->kullanici_adi ?></a>(<?php echo $asilHikaye->hikaye_tarih ?>)</p>
-                    <a href="altergör.php?hikaye_id=<?php echo $asilHikaye->hikaye_id ?>&seviye=<?php echo $asilHikaye->hikaye_seviye ?>" class="btn btn-primary">alternatifleri gör &rarr;</a>
+                    <p class="card-text"><?php echo $asilHikaye->hikaye_metin ?>... <br> <a href="#"> <br> <?php echo $asilHikaye->kullanici_adi ?></a>(<?php echo $asilHikaye->hikaye_tarih ?>)<a href="altergör.php?hikaye_id=<?php echo $asilHikaye->hikaye_id ?>&seviye=<?php echo $asilHikaye->hikaye_seviye ?>" class="btn btn-link">alternatifleri gör &rarr;</a>
                     <?php if (dolumu($asilHikaye->hikaye_id)==false): ?>
-                      <a href="alterekle.php?parentid=<?php echo $asilHikaye->hikaye_id ?>&seviye=<?php echo $asilHikaye->hikaye_seviye ?>" class="btn btn-primary">alternatif ekle &rarr;</a>
-                    <?php endif; ?>
+                      <a href="alterekle.php?parentid=<?php echo $asilHikaye->hikaye_id ?>&seviye=<?php echo $asilHikaye->hikaye_seviye ?>" class="btn btn-link">devam ettir &rarr;</a>
+                    <?php endif; ?></p>
+
+                    <p class="card-text"><?php echo $hikaye->alterbir_metin ?><a href="#">... <br> <?php echo $hikaye->kullanici_adi ?></a>(<?php echo $hikaye->alterbir_tarih ?>)</p>
+                  <?php if (dolumu2($hikaye->alterbir_id)==false): ?>
+                    <a href="alterekle.php?parentid=<?php echo $hikaye->alterbir_id ?>&seviye=<?php echo $hikaye->alterbir_seviye ?>" class="btn btn-primary">devam ettir &rarr;</a>
+                  <?php endif; ?>
 
                   </div>
 
                 </div>
-                <div class="card mb-4">
-                  <div class="card-body">
 
-                      <p class="card-text"><?php echo $hikaye->alterbir_metin ?><a href="#"><?php echo $hikaye->kullanici_adi ?></a>(<?php echo $hikaye->alterbir_tarih ?>)</p>
-                    <?php if (dolumu2($hikaye->alterbir_id)==false): ?>
-                      <a href="alterekle.php?parentid=<?php echo $hikaye->alterbir_id ?>&seviye=<?php echo $hikaye->alterbir_seviye ?>" class="btn btn-primary">alternatif ekle &rarr;</a>
-                    <?php endif; ?>
-
-                  </div>
-
-
-                </div>
 
               <?php endif; ?>
 
@@ -126,11 +119,9 @@ include 'wiew/header.php';
 
                      <div class="card mb-4">
                        <div class="card-body">
-                           <p class="card-text"><?php echo mb_substr($value->alterbir_metin,0,200) ?> <br> <a href="#"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alterbir_tarih ?>)</p>
+                           <p class="card-text"><?php echo mb_substr($value->alterbir_metin,0,200) ?>... <br> <a href="#"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alterbir_tarih ?>)</p>
                          <a href="altergör.php?hikaye_id=<?php echo $value->alterbir_id ?>&seviye=<?php echo $value->alterbir_seviye ?>&id=<?php echo $value->alterbir_parentid ?>" class="btn btn-primary">alternatifleri gör &rarr;</a>
-                         <?php if (dolumu2($value->alterbir_id)==false): ?>
-                           <a href="alterekle.php?parentid=<?php echo $value->alterbir_id ?>&seviye=<?php echo $value->alterbir_seviye ?>" class="btn btn-primary">alternatif ekle &rarr;</a>
-                         <?php endif; ?>
+                         
                        </div>
                      </div>
                    </div>
@@ -146,7 +137,7 @@ include 'wiew/header.php';
 
                      <div class="card mb-4">
                        <div class="card-body">
-                         <p class="card-text"><?php echo mb_substr($value->alteriki_metin,0,200) ?> <a href="#"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alteriki_tarih ?>)</p>
+                         <p class="card-text"><?php echo mb_substr($value->alteriki_metin,0,200) ?> <br> <a href="#"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alteriki_tarih ?>)</p>
                          <a href="hikayeoku.php?hikaye_id=<?php echo $value->alteriki_id ?>&seviye=<?php echo $value->alteriki_seviye ?>&id=<?php echo $value->alteriki_parentid ?>" class="btn btn-primary">Hikayeyi Oku&rarr;</a>
 
                        </div>
@@ -172,7 +163,7 @@ include 'wiew/header.php';
 
 
           <!-- Footer -->
-          <footer class="py-5 bg-dark">
+          <footer class="py-5 bg-dark ">
             <div class="container">
               <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
             </div>

@@ -9,7 +9,10 @@ if (isset($_POST['kullanici_adi'])) {
   $kullanici = $kullanici->fetch(PDO::FETCH_OBJ);
   if ($kullanici) {
 
-    echo "böyle bir kullanici zaten mevcut";
+    $kullanicidurum=1;
+    ?>
+    <input id="deneme" type="hidden" name="" value="<?php echo $kullanicidurum ?>">
+    <?php
 
 
 
@@ -21,6 +24,7 @@ if (isset($_POST['kullanici_adi'])) {
     $kullanici1 = $connection->prepare("SELECT * FROM kullanici where kullanici_adi=:kullanici_adi and kullanici_sifre=:kullanici_sifre");
     $kullanici1->execute(array('kullanici_adi' => $_POST['kullanici_adi'],'kullanici_sifre'=>$_POST['kullanici_sifre']));
     $kullanici1 = $kullanici1->fetch(PDO::FETCH_OBJ);
+    $kullanicidurum=0;
 
 
     $_SESSION['kullanici_adi']=$kullanici1->kullanici_adi;
@@ -33,14 +37,6 @@ if (isset($_POST['kullanici_adi'])) {
 }
 
 include 'wiew/header.php';
-include 'wiew/footer.php';
-
-
-
-
-
-
-
 ?>
 
 
@@ -52,6 +48,9 @@ include 'wiew/footer.php';
  <div class="login-form">
     <form action="" method="post">
         <h2 class="text-center"> Kayıt ol</h2>
+        <div id="asd"style="display: none;" class="alert alert-danger">
+  <strong>Kullanıcı mevcut</strong></div>
+
         <?php if ($yanlisgiris==1): ?>
           <?php echo "yanlis giriş yaptınız" ?>
 
@@ -68,3 +67,5 @@ include 'wiew/footer.php';
     </form>
     <p class="text-center"><a href="login.php">Giriş Yap</a></p>
 </div>
+
+<?php include 'wiew/footer.php'; ?>

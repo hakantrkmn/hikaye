@@ -64,3 +64,20 @@ textarea
 	color: white;
 	text-align: center;
 }
+
+
+.py-5.bg-dark
+{
+	position: absolute;
+	    left: 0;
+	    height: 100px;
+	    width: 100%;
+}
+.py-5.bg-dark.as
+{
+	position: absolute;
+	    left: 0;
+			bottom: 0;
+	    height: 100px;
+			width: 100%;
+}
