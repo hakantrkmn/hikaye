@@ -47,17 +47,17 @@ if (isset($_POST["alter-metin"]) and $_GET['seviye']==0){
 
 
 
-if ($anahikaye->hikaye_devambir==0)
+if ($anahikaye->hikaye_devambir==NULL)
 {
   $hikaye2 = $connection->prepare("UPDATE anahikaye set hikaye_devambir=$val where hikaye_id = $parentid ");
   $hikaye2->execute();
 }
-elseif ($anahikaye->hikaye_devamiki==0)
+elseif ($anahikaye->hikaye_devamiki==NULL)
 {
   $hikaye2 = $connection->prepare("UPDATE anahikaye set hikaye_devamiki=$val where hikaye_id = $parentid ");
   $hikaye2->execute();
 }
-elseif($anahikaye->hikaye_devamuc==0)
+elseif($anahikaye->hikaye_devamuc==NULL)
 {
   $hikaye2 = $connection->prepare("UPDATE anahikaye set hikaye_devamuc=$val where hikaye_id = $parentid ");
   $hikaye2->execute();
@@ -92,20 +92,17 @@ if (isset($_POST["alter-metin"]) and $_GET['seviye']==1){
     $val2 = $hikaye4->alterbir_parentid;
 
 
-if ($alterBir->alterbir_devambir==0) {
+if ($alterBir->alterbir_devambir==NULL) {
   $hikaye2 = $connection->prepare("UPDATE alternatifbir set alterbir_devambir=$val where alterbir_id = $parentid ");
   $hikaye2->execute();
 }
-elseif ($alterBir->alterbir_devamiki==0) {
+elseif ($alterBir->alterbir_devamiki==NULL) {
   $hikaye2 = $connection->prepare("UPDATE alternatifbir set alterbir_devamiki=$val where alterbir_id = $parentid ");
   $hikaye2->execute();
 }
-elseif($alterBir->alterbir_devamuc==0) {
+elseif($alterBir->alterbir_devamuc==NULL) {
   $hikaye2 = $connection->prepare("UPDATE alternatifbir set alterbir_devamuc=$val where alterbir_id = $parentid ");
   $hikaye2->execute();
-}
-else {
-  echo "boş yer yok ";
 }
 
 header("Location: altergör.php?hikaye_id=$val3&seviye=1&id=$val2");

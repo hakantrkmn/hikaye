@@ -38,7 +38,7 @@
         <a class="navbar-brand" href="index.php?page=1"><?php if (isset($_SESSION['kullanici_adi'])): ?>
           Hoşgeldin <?php echo $_SESSION['kullanici_adi'] ?>
           <?php else: ?>
-            <?php echo "Merhaba hikaye yazabilmek için giriş yapmalısın" ?>
+            <?php echo "Hikaye yazabilmek için giriş yapmalısın" ?>
         <?php endif; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

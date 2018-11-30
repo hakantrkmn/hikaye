@@ -1,7 +1,7 @@
 <?php
 
 include 'init.php';
-
+$kullanicidurum;
 $yanlisgiris =0;
 if (isset($_POST['kullanici_adi'])) {
   $kullanici = $connection->prepare("SELECT * FROM kullanici where kullanici_adi=:kullanici_adi ");
@@ -9,10 +9,11 @@ if (isset($_POST['kullanici_adi'])) {
   $kullanici = $kullanici->fetch(PDO::FETCH_OBJ);
   if ($kullanici) {
 
-    $kullanicidurum=1;
+$kullanicidurum=1;
     ?>
     <input id="deneme" type="hidden" name="" value="<?php echo $kullanicidurum ?>">
     <?php
+
 
 
 
@@ -48,7 +49,7 @@ include 'wiew/header.php';
  <div class="login-form">
     <form action="" method="post">
         <h2 class="text-center"> Kayıt ol</h2>
-        <div id="asd"style="display: none;" class="alert alert-danger">
+        <div id="asd"style="display: none;" align="center" class="alert alert-danger">
   <strong>Kullanıcı mevcut</strong></div>
 
         <?php if ($yanlisgiris==1): ?>
@@ -65,7 +66,7 @@ include 'wiew/header.php';
             <button type="submit" class="btn btn-primary btn-block">Kayıt ol</button>
         </div>
     </form>
-    <p class="text-center"><a href="login.php">Giriş Yap</a></p>
+    <p class="text-center"><a  class="btn btn-primary" href="login.php">Giriş Yap</a></p>
 </div>
 
 <?php include 'wiew/footer.php'; ?>

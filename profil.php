@@ -2,6 +2,12 @@
 
 include 'init.php';
 include 'functions.php';
+$kendiProfili=0;
+if (isset($_SESSION['kullanici_adi'])) {
+  if ($_SESSION['kullanici_adi']==$_GET['kullanici']) {
+    $kendiProfili = 1;
+  }
+}
 
 $videos = $connection->prepare("SELECT * FROM anahikaye , kullanici where kullanici.kullanici_adi=:name and kullanici.kullanici_id=anahikaye.kullanici_id ORDER BY hikaye_id DESC");
 $videos->execute(array('name'=>$_GET['kullanici']));
@@ -31,23 +37,23 @@ include 'wiew/header.php';
 
       <h1 class="my-4">yazdığı ana Hikayeler
       </h1>
-
 <?php foreach ($videos as  $value): ?>
+
+
+
   <div class="card mb-4">
     <div class="card-body">
       <h2 class="card-title"><?php echo $value->hikaye_baslik ?></h2>
       <p class="card-text"><?php echo $value->hikaye_metin ?></p>
-      <a href="altergör.php?hikaye_id=<?php echo $value->hikaye_id ?>&seviye=<?php echo $value->hikaye_seviye ?>" class="btn btn-primary">Alternatif devamları gör &rarr;</a>
-      <?php if (dolumu($value->hikaye_id)==false): ?>
-        <a href="alterekle.php?parentid=<?php echo $value->hikaye_id ?>&seviye=<?php echo $value->hikaye_seviye ?>" class="btn btn-primary">Alternatif devam ekle &rarr;</a>
-      <?php endif; ?>
+      <a href="altergör.php?hikaye_id=<?php echo $value->hikaye_id ?>&seviye=<?php echo $value->hikaye_seviye ?>" class="btn btn-primary">Hikayeye Git &rarr;</a>
+      <?php if ($kendiProfili==1): ?>
+        <form style="display:inline-block;"class="" action="hikayesil.php" method="post">
+          <button type="submit"class="btn btn-danger">Hikayeyi Sil!</button>
+          <input type="hidden" name="hikaye_id" value="<?php echo $value->hikaye_id ?>">
+          <input type="hidden" name="seviye" value="<?php echo $value->hikaye_seviye ?>">
+        </form>
+<?php endif; ?>
 
-
-    </div>
-    <div class="card-footer text-muted">
-      Posted on <?php echo $value->hikaye_tarih ?> by
-      <a href="#"><?php echo $value->kullanici_adi ?></a>
-      <a href="like.php?hikaye_id=<?php echo $value->hikaye_id ?>&seviye=<?php echo $value->hikaye_seviye ?>" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> <i class="fas fa-thumbs-up"></i> <?php echo $value->hikaye_begeni ?> </a>
     </div>
   </div>
 <?php endforeach; ?>
@@ -58,17 +64,18 @@ include 'wiew/header.php';
 <div class="card mb-4">
 <div class="card-body">
 <p class="card-text"><?php echo $value->alterbir_metin ?></p>
-<a href="altergör.php?hikaye_id=<?php echo $value->alterbir_id ?>&seviye=<?php echo $value->alterbir_seviye ?>" class="btn btn-primary">Alternatif devamları gör &rarr;</a>
-<?php if (dolumu2($value->alterbir_id)==false): ?>
-  <a href="alterekle.php?parentid=<?php echo $value->alterbir_id ?>&seviye=<?php echo $value->alterbir_seviye ?>" class="btn btn-primary">Alternatif devam ekle &rarr;</a>
+<a href="altergör.php?hikaye_id=<?php echo $value->alterbir_id ?>&seviye=<?php echo $value->alterbir_seviye ?>" class="btn btn-primary">Hikayeye Git &rarr;</a>
+<?php if ($kendiProfili==1): ?>
+  <form style="display:inline-block;"class="" action="hikayesil.php" method="post">
+    <button type="submit"class="btn btn-danger" name="button">Hikayeyi Sil!</button>
+    <input type="hidden" name="hikaye_id" value="<?php echo $value->alterbir_id ?>">
+    <input type="hidden" name="seviye" value="<?php echo $value->alterbir_seviye ?>">
+  </form>
+
 <?php endif; ?>
 
 
-</div>
-<div class="card-footer text-muted">
-Posted on <?php echo $value->alterbir_tarih ?> by
-<a href="#"><?php echo $value->kullanici_adi ?></a>
-<a href="like.php?hikaye_id=<?php echo $value->alterbir_id ?>&seviye=<?php echo $value->alterbir_seviye ?>" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> <i class="fas fa-thumbs-up"></i> <?php echo $value->alterbir_begeni ?> </a>
+
 </div>
 </div>
 <?php endforeach; ?>
@@ -81,12 +88,16 @@ Posted on <?php echo $value->alterbir_tarih ?> by
 <div class="card mb-4">
 <div class="card-body">
 <p class="card-text"><?php echo $value->alteriki_metin ?></p>
+<a href="hikayeoku.php?hikaye_id=<?php echo $value->alteriki_id ?>&seviye=<?php echo $value->alteriki_seviye ?>&id=<?php echo $value->alteriki_parentid ?>" class="btn btn-primary">Hikayeyi Oku&rarr;</a>
+<?php if ($kendiProfili==1): ?>
+  <form style="display:inline-block;"class="" action="hikayesil.php" method="post">
+    <button type="submit"class="btn btn-danger">Hikayeyi Sil!</button>
+    <input type="hidden" name="hikaye_id" value="<?php echo $value->alteriki_id ?>">
+    <input type="hidden" name="seviye" value="<?php echo $value->alteriki_seviye ?>">
+  </form>
+<?php endif; ?>
 </div>
-<div class="card-footer text-muted">
-Posted on <?php echo $value->alteriki_tarih ?> by
-<a href="#"><?php echo $value->kullanici_adi ?></a>
-<a href="like.php?hikaye_id=<?php echo $value->alteriki_id ?>&seviye=<?php echo $value->alteriki_seviye ?>" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> <i class="fas fa-thumbs-up"></i> <?php echo $value->alteriki_begeni ?> </a>
-</div>
+
 </div>
 <?php endforeach; ?>
 

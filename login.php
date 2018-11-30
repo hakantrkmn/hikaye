@@ -1,13 +1,14 @@
 <?php
 
 
-include 'wiew/header.php';
-include 'wiew/footer.php';
 
 
 
 include 'init.php';
-$yanlisgiris =0;
+include 'wiew/header.php';
+
+
+$yanlisgiris;
 if (isset($_POST['kullanici_adi'])) {
   $kullanici = $connection->prepare("SELECT * FROM kullanici where kullanici_adi=:kullanici_adi and kullanici_sifre=:kullanici_sifre");
   $kullanici->execute(array('kullanici_adi' => $_POST['kullanici_adi'],'kullanici_sifre'=>$_POST['kullanici_sifre']));
@@ -21,7 +22,8 @@ if (isset($_POST['kullanici_adi'])) {
 
   }
   else {
-    $yanlisgiris = 1;
+    $yanlisgiris=1;
+    ?> <input id="xd" type="hidden" name="" value="<?php echo $yanlisgiris ?>"> <?php
   }
 }
 
@@ -39,11 +41,10 @@ if (isset($_POST['kullanici_adi'])) {
 
  <div class="login-form">
     <form action="" method="post">
-        <h2 class="text-center">Log in</h2>
-        <?php if ($yanlisgiris==1): ?>
-          <?php echo "yanlis giriş yaptınız" ?>
+        <h2 class="text-center">Giriş Yap</h2>
+          <div id="asd"style="display: none" align="center" class="alert alert-danger">
+    <strong>Bilgiler yanlış</strong></div>
 
-        <?php endif; ?>
         <div class="form-group">
             <input name="kullanici_adi" type="text" class="form-control" placeholder="Kullanıcı Adı" required="required">
         </div>
@@ -51,12 +52,10 @@ if (isset($_POST['kullanici_adi'])) {
             <input type="password" name="kullanici_sifre" class="form-control" placeholder="Şifre" required="required">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
-        </div>
-        <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
-            <a href="#" class="pull-right">Forgot Password?</a>
+            <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
         </div>
     </form>
-    <p class="text-center"><a href="kayit.php">Kayıt Ol</a></p>
+    <p class="text-center"><a class="btn btn-primary" href="kayit.php">Kayıt Ol</a></p>
 </div>
+<?php
+include 'wiew/footer.php';
