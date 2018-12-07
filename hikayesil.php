@@ -18,6 +18,7 @@ if ($_POST['seviye']==2) {
   $videos = $connection->prepare("SELECT * FROM anahikaye , kullanici where kullanici.kullanici_adi=:name and kullanici.kullanici_id=anahikaye.kullanici_id ORDER BY hikaye_id DESC");
   $videos->execute(array('name'=>$_POST['kullanici']));
     header('Location: ' . $_SERVER['HTTP_REFERER']);
+    
 }
 
 

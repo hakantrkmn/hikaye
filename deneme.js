@@ -29,53 +29,121 @@ $(window).bind("load", function() {
 		}
 	}
 
-if(document.getElementById('xd') != null)
-{
-
-	const deneme = document.getElementById('xd').value;
-	if(deneme==1)
+	if(document.getElementById('xd') != null)
 	{
 
-		document.getElementById('asd').style.display = 'block';
+		const deneme = document.getElementById('xd').value;
+		if(deneme==1)
+		{
+
+			document.getElementById('asd').style.display = 'block';
+		}
 	}
-}
 
 
 
 });
 
 $(window).bind("load", function() {
-let tiklama = document.querySelectorAll("#silme");
-
-for (var i = 0; i < tiklama.length; i++) {
-	tiklama[i].addEventListener("click",func);
-}
+	let tiklama = document.querySelectorAll("#silme");
+	let metin = document.querySelectorAll("#metin");
 
 
-
-
-
-console.log(tiklama.length);
-
-
-function func(e)
-{
-	this.parentElement.parentElement.parentElement.className = "col-md-12";
-	if (this==tiklama[0]) {
-		tiklama[1].parentElement.parentElement.parentElement.style.display="none";
-		tiklama[2].parentElement.parentElement.parentElement.style.display="none";
+	for (var i = 0; i < tiklama.length; i++) {
+		tiklama[i].addEventListener("click",func);
 	}
-	else if (this==tiklama[1]) {
-		tiklama[0].parentElement.parentElement.parentElement.style.display="none";
-		tiklama[2].parentElement.parentElement.parentElement.style.display="none";
-	}
-	else if (this==tiklama[2]) {
-		tiklama[0].parentElement.parentElement.parentElement.style.display="none";
-		tiklama[1].parentElement.parentElement.parentElement.style.display="none";
-	}
-	this.text = "geri dön";
+	function func(e)
+	{
+		a = this;
 
 
-	e.preventDefault()
-}
+		if (a.innerHTML=="geri dön") {
+			if (tiklama.length==3) {
+				a.parentElement.parentElement.parentElement.className = "col-md-4";
+			}
+			else {
+				a.parentElement.parentElement.parentElement.className = "col-md-6";
+			}
+
+			if (a==tiklama[0]) {
+				for ( k = 1; k < tiklama.length; k++) {
+					tiklama[k].parentElement.parentElement.parentElement.style.display="block";
+				}
+				metin[0].style.whiteSpace="nowrap"
+			}
+			else if (a==tiklama[1]) {
+				for ( j = 0; j < tiklama.length; j++) {
+					if (j==1) {
+						j++;
+						if (tiklama.length==2) {
+							continue;
+						}
+					}
+					tiklama[j].parentElement.parentElement.parentElement.style.display="block";
+
+				}
+				metin[1].style.whiteSpace="nowrap"
+			}
+			else if (a==tiklama[2]) {
+				for ( j = 0; j < tiklama.length-1; j++) {
+					tiklama[j].parentElement.parentElement.parentElement.style.display="block";
+				}
+				metin[2].style.whiteSpace="nowrap"
+			}
+			console.log(a);
+			console.log(a.innerHTML);
+			a.innerHTML = "Oku";
+			return;
+		}
+		if (a.innerHTML=="Oku") {
+			if (a==tiklama[0]) {
+				for ( j = 1; j < tiklama.length; j++) {
+					tiklama[j].parentElement.parentElement.parentElement.style.display="none";
+				}
+				metin[0].style.whiteSpace="normal"
+			}
+			else if (a==tiklama[1]) {
+				for ( j = 0; j < tiklama.length; j++) {
+					if (j==1) {
+						j++;
+						if (tiklama.length==2) {
+							continue;
+						}
+					}
+					tiklama[j].parentElement.parentElement.parentElement.style.display="none";
+					metin[1].style.whiteSpace="normal"
+
+				}
+			}
+			else if (a==tiklama[2]) {
+				for ( j = 0; j < tiklama.length-1; j++) {
+
+					tiklama[j].parentElement.parentElement.parentElement.style.display="none";
+									metin[2].style.whiteSpace="normal"
+				}
+			}
+			a.innerHTML = "geri dön";
+			var xd = setInterval(function() { // this code is executed every 500 milliseconds:
+
+
+
+
+
+				if (i<=12) {
+					a.parentElement.parentElement.parentElement.className = "col-md-"+ String(i);
+					i=i+ 1;
+				}
+				if (i==13) {
+					clearInterval(xd);
+					i=0;
+				}
+
+
+				e.preventDefault()
+
+			}, 10);
+			return;
+
+		}
+	}
 });

@@ -161,7 +161,7 @@ include 'wiew/header.php';
 
             <div id="qwe"class="card mb-4">
               <div class="card-body">
-                <p class="card-text"><?php echo mb_substr($value->alterbir_metin,0,200) ?>... <br> <a href="profil.php?kullanici=<?php echo $value->kullanici_adi  ?>"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alterbir_tarih ?>)</p>
+                <p id="metin"class="card-text qw"><?php echo $value->alterbir_metin?> <br> <a href="profil.php?kullanici=<?php echo $value->kullanici_adi  ?>"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alterbir_tarih ?>)</p>
                 <a href="altergör.php?hikaye_id=<?php echo $value->alterbir_id ?>&seviye=<?php echo $value->alterbir_seviye ?>&id=<?php echo $value->alterbir_parentid ?>" class="btn btn-primary">alternatifleri gör &rarr;</a>
                 <?php if (count($alternatifler)>1): ?>
                   <a id="silme" class="btn btn-primary">Oku</a>
@@ -184,7 +184,7 @@ include 'wiew/header.php';
 
             <div class="card mb-4">
               <div class="card-body">
-                <p class="card-text"><?php echo mb_substr($value->alteriki_metin,0,200) ?> <br> <a href="profil.php?kullanici=<?php echo $value->kullanici_adi  ?>"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alteriki_tarih ?>)</p>
+                <p id="metin"class="card-text qw"><?php echo $value->alteriki_metin ?> <br> <a href="profil.php?kullanici=<?php echo $value->kullanici_adi  ?>"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alteriki_tarih ?>)</p>
                 <a href="hikayeoku.php?hikaye_id=<?php echo $value->alteriki_id ?>&seviye=<?php echo $value->alteriki_seviye ?>&id=<?php echo $value->alteriki_parentid ?>" class="btn btn-primary">Hikayeyi Oku&rarr;</a>
 
 

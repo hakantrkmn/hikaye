@@ -1,1 +1,0 @@
-hikaye web sitesi

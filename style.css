@@ -23,6 +23,11 @@
 .buton{
 float: right;
 }
+.card-text.qw{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .card{
 	border-radius: 0px;
