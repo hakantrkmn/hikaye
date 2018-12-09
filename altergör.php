@@ -105,7 +105,15 @@ include 'wiew/header.php';
               <form class="" action="alterekle.php" method="post">
                 <input type="hidden" name="parentid" value="<?php echo $hikaye->hikaye_id ?>">
                 <input type="hidden" name="seviye" value="<?php echo $hikaye->hikaye_seviye ?>">
-                <button class="btn btn-primary"type="submit">devam ettir &rarr;</button>
+                <?php if (isset($_SESSION['kullanici_adi'])): ?>
+                  <?php if ($_SESSION['kullanici_adi']==$hikaye->kullanici_adi): ?>
+                    <?php else: ?>
+                      <button class="btn btn-primary"type="submit">devam ettir &rarr;</button>
+
+                  <?php endif; ?>
+
+                <?php endif; ?>
+
               </form>
             <?php endif; ?>
 
@@ -128,7 +136,18 @@ include 'wiew/header.php';
                 <form class="" action="alterekle.php" method="post">
                   <input type="hidden" name="parentid" value="<?php echo $hikaye->alterbir_id ?>">
                   <input type="hidden" name="seviye" value="<?php echo $hikaye->alterbir_seviye ?>">
-                  <button class="btn btn-primary"type="submit">devam ettir &rarr;</button>
+
+                  <?php if (isset($_SESSION['kullanici_adi'])): ?>
+                    <?php if ($_SESSION['kullanici_adi']==$hikaye->kullanici_adi): ?>
+
+                    <?php elseif ($_SESSION['kullanici_adi']==$asilHikaye->kullanici_adi):?>
+                    <?php else: ?>
+
+                        <button class="btn btn-primary"type="submit">devam ettir &rarr;</button>
+
+                    <?php endif; ?>
+
+                  <?php endif; ?>
                 </form>
               <?php endif; ?>
 
@@ -211,12 +230,7 @@ include 'wiew/header.php';
 
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark as">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

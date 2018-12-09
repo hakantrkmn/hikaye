@@ -1,3 +1,13 @@
+function noUser(e){
+	swal({
+		title: 'Giriş Yapmalısın',
+		text: 'Hikaye yazabilmek için giriş yapmalısın',
+		icon: 'error',
+		button: 'Anladım'
+	})
+	e.preventDefault;
+}
+
 function charcountupdate(str) {
 	var lng = str.length;
 	document.getElementById("charcount").innerHTML = lng + '/700';

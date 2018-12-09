@@ -35,38 +35,56 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="index.php?page=1"><?php if (isset($_SESSION['kullanici_adi'])): ?>
-          Hoşgeldin <?php echo $_SESSION['kullanici_adi'] ?>
-          <?php else: ?>
-            <?php echo "Hikaye yazabilmek için giriş yapmalısın" ?>
-        <?php endif; ?></a>
+        <a class="navbar-brand" href="index.php?page=1">Ana Sayfa</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.php?page=1">Ana Sayfa
-                <span class="sr-only">(current)</span>
-              </a>
-            </li
+            <li class="nav-item">
+
+              <a class="nav-link" href="profil.php?kullanici=<?php echo $_SESSION['kullanici_adi']  ?>"><?php if (isset($_SESSION['kullanici_adi'])): ?>
+                <?php echo $_SESSION['kullanici_adi'] ?>
+              <?php endif; ?></a>
+
+             </li>
             <li class="nav-item">
               <?php if (isset($_SESSION['kullanici_adi'])): ?>
-              <a class="nav-link" href="anahikayeyaz.php">
+                <a class="nav-link" href="anahikayeyaz.php">
 
-                  Hikaye Yaz
+                    Hikaye Yaz <i class="fas fa-pen"></i>
 
-                </a>
+                  </a>
+                  <?php else: ?>
+                    <a class="nav-link" onclick="noUser()">
+
+                        Hikaye Yaz <i class="fas fa-pen"></i>
+
+                      </a>
+              <?php endif; ?>
+
+
+
+
+
+
+            </li>
+            <?php if (isset($_SESSION['kullanici_adi'])): ?>
+
+
                 <?php else: ?>
+                    <li class="nav-item">
                   <a class="nav-link" href="login.php">
 
                       Giriş Yap
 
                     </a>
-                <?php endif; ?>
 
 
             </li>
+          <?php endif; ?>
+
+
           </ul>
         </div>
       </div>

@@ -31,11 +31,10 @@ include 'wiew/header.php';
 
           <!-- Blog Post -->
           <?php foreach ($anaHikayeler as $hikaye): ?>
-            <div class="card mb-4">
+            <div onclick="location.href='altergör.php?hikaye_id=<?php echo $hikaye->hikaye_id ?>&seviye=<?php echo $hikaye->hikaye_seviye ?>';"class="card mb-4">
               <div class="card-body">
                 <h2 class="card-title" align="center"><?php echo $hikaye->hikaye_baslik ?></h2>
                 <p class="card-text"><?php echo mb_substr($hikaye->hikaye_metin,0,200) ?></p>
-                <a href="altergör.php?hikaye_id=<?php echo $hikaye->hikaye_id ?>&seviye=<?php echo $hikaye->hikaye_seviye ?>" >Devamı &rarr;</a>
 
               </div>
 
@@ -79,12 +78,6 @@ include 'wiew/header.php';
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-      </div>
-      <!-- /.container -->
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
