@@ -1,6 +1,6 @@
 <?php
 
-include 'init.php';
+include_once 'init.php';
 
 function istenenHikaye($hikaye_id)
 {

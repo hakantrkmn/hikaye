@@ -21,7 +21,6 @@ function charcountupdate(str) {
 		let deneme = str.slice(0,699);
 		document.getElementById("textbox").value =  deneme;
 
-
 	}
 }
 
@@ -110,7 +109,7 @@ $(window).bind("load", function() {
 				for ( j = 1; j < tiklama.length; j++) {
 					tiklama[j].parentElement.parentElement.parentElement.style.display="none";
 				}
-				metin[0].style.whiteSpace="normal"
+
 			}
 			else if (a==tiklama[1]) {
 				for ( j = 0; j < tiklama.length; j++) {
@@ -121,7 +120,6 @@ $(window).bind("load", function() {
 						}
 					}
 					tiklama[j].parentElement.parentElement.parentElement.style.display="none";
-					metin[1].style.whiteSpace="normal"
 
 				}
 			}
@@ -129,7 +127,6 @@ $(window).bind("load", function() {
 				for ( j = 0; j < tiklama.length-1; j++) {
 
 					tiklama[j].parentElement.parentElement.parentElement.style.display="none";
-									metin[2].style.whiteSpace="normal"
 				}
 			}
 			a.innerHTML = "geri dön";
@@ -139,19 +136,24 @@ $(window).bind("load", function() {
 
 
 
-				if (i<=12) {
-					a.parentElement.parentElement.parentElement.className = "col-md-"+ String(i);
-					i=i+ 1;
+				if (i<=900) {
+					a.parentElement.parentElement.style.width = i+"px";
+					console.log(a.parentElement.parentElement.style.width);
+					i=i+ 12;
 				}
-				if (i==13) {
+				if (i>=900) {
 					clearInterval(xd);
+					a.parentElement.childNodes[1].style.whiteSpace="normal"
+					a.parentElement.parentElement.style.width = "-webkit-fill-available";
+					a.parentElement.parentElement.parentElement.className = "col-md-12";
+					console.log(a.parentElement.childNodes[1].style);
 					i=0;
 				}
 
 
 				e.preventDefault()
 
-			}, 10);
+			}, 1);
 			return;
 
 		}
