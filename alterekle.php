@@ -2,40 +2,29 @@
 
 include 'init.php';
 include 'functions.php';
+include 'class.php';
 
 //kullanici varsa ekleyebilir yoksa önceki sayfaya yönlendirilir
 if (kullanicivarmi()) {
 
+  if ($_POST['seviye']==1) {
+    $Nhikaye = new alterhikaye();
+  }
+  if ($_POST['seviye']==0) {
+    $Nhikaye = new hikaye();
+  }
+
   //eğer alternatif eklenmek istenen hikaye 1. seviyeyse ona göre sorgu
   if ($_POST['seviye']==1) {
     //alternatifi istenen hikaye
-    $hikaye = $connection->prepare("SELECT *
-      FROM alternatifbir
-      INNER JOIN kullanici
-      where kullanici.kullanici_id = alternatifbir.kullanici_id and alternatifbir.alterbir_id =:hikaye_id");
-      $hikaye->execute(array('hikaye_id'=>$_POST['parentid']));
-      $hikaye = $hikaye->fetch(PDO::FETCH_OBJ);
-
-      $id = $hikaye->alterbir_parentid;
+    $hikaye = $Nhikaye->getMainVideo($_POST['seviye'],$_POST['parentid']);
 
       //alternatif eklenmek istenen hikayenin parent hikayesi
 
-      $parenthikaye = $connection->prepare("SELECT *
-        FROM anahikaye
-        INNER JOIN kullanici
-        where kullanici.kullanici_id = anahikaye.kullanici_id and anahikaye.hikaye_id =$id");
-        $parenthikaye->execute();
-        $parenthikaye = $parenthikaye->fetch(PDO::FETCH_OBJ);
+      $parenthikaye = $Nhikaye->getRootVideo($hikaye->alterbir_parentid);
       }
-      //eğer tıklanan hikaye 0.seviyeyse ona göre sorgu
       if ($_POST['seviye']==0) {
-        //alternatifi istenen hikaye
-        $parenthikaye = $connection->prepare("SELECT *
-          FROM anahikaye
-          INNER JOIN kullanici
-          where kullanici.kullanici_id = anahikaye.kullanici_id and anahikaye.hikaye_id =:id");
-          $parenthikaye->execute(array('id'=> $_POST['parentid']));
-          $parenthikaye = $parenthikaye->fetch(PDO::FETCH_OBJ);
+        $parenthikaye =  $Nhikaye->getMainVideo($_POST['seviye'],$_POST['parentid']);
         }
 
 

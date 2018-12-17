@@ -2,14 +2,6 @@
 
 include 'init.php';
 
-$anaHikaye = $connection->prepare("SELECT *
-  FROM anahikaye
-  INNER JOIN kullanici
-  where kullanici.kullanici_id = anahikaye.kullanici_id");
-  $anaHikaye->execute();
-  $anaHikayeler = $anaHikaye->fetchAll(PDO::FETCH_OBJ);
-
-
 
 include 'wiew/header.php';
   ?>

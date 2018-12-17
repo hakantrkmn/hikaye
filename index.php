@@ -2,6 +2,7 @@
 
 include 'init.php';
 include 'functions.php';
+include 'class.php';
 if (!isset($_GET['page'])) {
   $page=1;
 }
@@ -9,8 +10,10 @@ else {
   $page=$_GET['page'];
 }
 
-$anaHikayeler = getStory($page);
-$page = getPage();
+//$anaHikayeler = getStory($page);
+//$page = getPage();
+$anaHikayeler = hikaye::getAllVideos($page);
+$page = hikaye::getPage();
 
 
 
