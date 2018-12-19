@@ -1,11 +1,11 @@
 <?php
 
-include 'init.php';
 include 'class.php';
-$Nhikaye = new alterhikaye();
-$birincialternatif = $Nhikaye->getMainVideo($_GET['seviye']-1,$_GET['id']);
+$Nhikaye = new alter2hikaye();
+$Nhikaye->getStory($_GET['seviye'],$_GET['hikaye_id']);
+$birincialternatif = $Nhikaye->getParentStory();
 $anahikaye = $Nhikaye->getRootVideo($birincialternatif->alterbir_parentid);
-$tiklananhikaye = $Nhikaye->getMainVideo($_GET['seviye'],$_GET['hikaye_id']);
+
 include 'wiew/header.php';
 ?>
 
@@ -33,7 +33,7 @@ include 'wiew/header.php';
             <p class="card-text"><?php echo $birincialternatif->alterbir_metin ?> <br> <a href="profil.php?kullanici=<?php echo $birincialternatif->kullanici_adi  ?>"><?php echo $birincialternatif->kullanici_adi ?></a>(<?php echo $birincialternatif->alterbir_tarih ?>)<a href="altergör.php?hikaye_id=<?php echo $birincialternatif->alterbir_id ?>&seviye=<?php echo $birincialternatif->alterbir_seviye ?>&id=<?php echo $birincialternatif->alterbir_parentid ?>">Hikayeye git &rarr;</a></p>
 
             <!–– TIKLANAN HİKAYENİN KENDİSİ ––>
-            <p class="card-text"><?php echo $tiklananhikaye->alteriki_metin ?> <br> <a href="profil.php?kullanici=<?php echo $tiklananhikaye->kullanici_adi  ?>"><?php echo $tiklananhikaye->kullanici_adi ?></a>(<?php echo $tiklananhikaye->alteriki_tarih ?>)</p>
+            <p class="card-text"><?php echo $Nhikaye->alteriki_metin ?> <br> <a href="profil.php?kullanici=<?php echo $Nhikaye->kullanici_adi  ?>"><?php echo $Nhikaye->kullanici_adi ?></a>(<?php echo $Nhikaye->alteriki_tarih ?>)</p>
           </div>
         </div>
       </div>

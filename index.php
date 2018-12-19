@@ -1,8 +1,6 @@
 <?php
 
-include 'init.php';
-include 'functions.php';
-include 'class.php';
+  include 'class.php';
 if (!isset($_GET['page'])) {
   $page=1;
 }

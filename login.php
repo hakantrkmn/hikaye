@@ -4,27 +4,13 @@
 
 
 
-include 'init.php';
 include 'wiew/header.php';
+include 'class.php';
 
 
 $yanlisgiris;
 if (isset($_POST['kullanici_adi'])) {
-  $kullanici = $connection->prepare("SELECT * FROM kullanici where kullanici_adi=:kullanici_adi and kullanici_sifre=:kullanici_sifre");
-  $kullanici->execute(array('kullanici_adi' => $_POST['kullanici_adi'],'kullanici_sifre'=>$_POST['kullanici_sifre']));
-  $kullanici = $kullanici->fetch(PDO::FETCH_OBJ);
-  if ($kullanici) {
-    $_SESSION['kullanici_adi']=$kullanici->kullanici_adi;
-    $_SESSION['kullanici_sifre']=$kullanici->kullanici_sifre;
-    $_SESSION['kullanici_id']=$kullanici->kullanici_id;
-
-    header("Location: index.php");
-
-  }
-  else {
-    $yanlisgiris=1;
-    ?> <input id="xd" type="hidden" name="" value="<?php echo $yanlisgiris ?>"> <?php
-  }
+  user::loginUser($_POST['kullanici_adi'],$_POST['kullanici_sifre']);
 }
 
 

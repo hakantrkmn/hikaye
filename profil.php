@@ -1,28 +1,18 @@
 <?php
 
-include 'init.php';
-include 'functions.php';
+include 'class.php';
 $kendiProfili=0;
 if (isset($_SESSION['kullanici_adi'])) {
   if ($_SESSION['kullanici_adi']==$_GET['kullanici']) {
     $kendiProfili = 1;
   }
 }
+$story = new user();
+$rootStory = $story->userStory(0,$_GET['kullanici']);
 
-$videos = $connection->prepare("SELECT * FROM anahikaye , kullanici where kullanici.kullanici_adi=:name and kullanici.kullanici_id=anahikaye.kullanici_id ORDER BY hikaye_id DESC");
-$videos->execute(array('name'=>$_GET['kullanici']));
+$alterStory = $story->userStory(1,$_GET['kullanici']);
 
-$videos=$videos->fetchAll(PDO::FETCH_OBJ);
-
-$videos2 = $connection->prepare("SELECT * FROM alternatifbir , kullanici where kullanici.kullanici_adi=:name and kullanici.kullanici_id=alternatifbir.kullanici_id ORDER BY alterbir_id DESC");
-$videos2->execute(array('name'=>$_GET['kullanici']));
-
-$videos2=$videos2->fetchAll(PDO::FETCH_OBJ);
-
-$videos3 = $connection->prepare("SELECT * FROM alternatifiki , kullanici where kullanici.kullanici_adi=:name and kullanici.kullanici_id=alternatifiki.kullanici_id ORDER BY alteriki_id DESC");
-$videos3->execute(array('name'=>$_GET['kullanici']));
-
-$videos3=$videos3->fetchAll(PDO::FETCH_OBJ);
+$alterStory2 = $story->userStory(2,$_GET['kullanici']);
 
 
 include 'wiew/header.php';
@@ -37,7 +27,7 @@ include 'wiew/header.php';
 
       <h1 class="my-4">yazdığı ana Hikayeler
       </h1>
-<?php foreach ($videos as  $value): ?>
+<?php foreach ($rootStory as  $value): ?>
 
 
 
@@ -60,7 +50,7 @@ include 'wiew/header.php';
 <h2 class="my-4">yazdığı 1.devam Hikayeler
 </h2>
 
-<?php foreach ($videos2 as  $value): ?>
+<?php foreach ($alterStory as  $value): ?>
 <div class="card mb-4">
 <div class="card-body">
 <p class="card-text"><?php echo $value->alterbir_metin ?></p>
@@ -84,7 +74,7 @@ include 'wiew/header.php';
 <h3 class="my-4">yazdığı 2.devam Hikayeler
 </h3>
 
-<?php foreach ($videos3 as  $value): ?>
+<?php foreach ($alterStory2 as  $value): ?>
 <div class="card mb-4">
 <div class="card-body">
 <p class="card-text"><?php echo $value->alteriki_metin ?></p>

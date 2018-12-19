@@ -1,3 +1,0 @@
-# hikaye 
-
-hikaye projesi

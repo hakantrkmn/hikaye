@@ -50,7 +50,9 @@ body{
 	background-color: rgb(0, 123, 255,0.5);
 	border: none;
 }
-
+.bg-dark{
+	background-color: black!important;
+}
 
 .col-md-4{
 	padding-left: 5px;

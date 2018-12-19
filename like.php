@@ -1,7 +1,5 @@
 <?php
 
-include 'init.php';
-
 
 if ($_GET['seviye']==0) {
   $anaHikaye = $connection->prepare("SELECT hikaye_begeni FROM anahikaye where hikaye_id=:hikaye_id");
