@@ -1,3 +1,19 @@
+<?php
+
+if (isset($_GET['cikis']) ) {
+  if ($_GET['cikis']==1) {
+    session_destroy();
+    header("Location: index/1");
+    $cikis=0;
+  }
+
+
+
+}
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -15,9 +31,14 @@
     <meta name="author" content="">
 
     <title>Kendi Hikayeni Yaz</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <base href="/hikaye/" >
 
     <!-- Bootstrap core CSS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script type="text/javascript" src="deneme.js"></script>
@@ -33,7 +54,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="index.php?page=1">Ana Sayfa</a>
+        <a class="navbar-brand" href="index/1">Ana Sayfa</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,18 +62,19 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
 
-              <a class="nav-link" href="profil.php?kullanici=<?php echo $_SESSION['kullanici_adi']  ?>"><?php if (isset($_SESSION['kullanici_adi'])): ?>
+              <a class="nav-link" href="profil/<?php echo $_SESSION['kullanici_adi']  ?>"><?php if (isset($_SESSION['kullanici_adi'])): ?>
                 <?php echo $_SESSION['kullanici_adi'] ?>
               <?php endif; ?></a>
 
              </li>
             <li class="nav-item">
               <?php if (isset($_SESSION['kullanici_adi'])): ?>
-                <a class="nav-link" href="anahikayeyaz.php">
+                <a class="nav-link" href="anahikayeyaz">
 
                     Hikaye Yaz <i class="fas fa-pen"></i>
 
                   </a>
+
                   <?php else: ?>
                     <a class="nav-link" onclick="noUser()">
 
@@ -67,6 +89,14 @@
 
 
             </li>
+            <?php if (isset($_SESSION['kullanici_adi'])): ?>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php?cikis=1">
+
+                  Çıkış Yap <i class="fas fa-sign-out-alt"></i>
+
+                </a></li>
+                <?php endif; ?>
             <?php if (isset($_SESSION['kullanici_adi'])): ?>
 
 

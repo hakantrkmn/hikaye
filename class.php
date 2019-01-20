@@ -9,26 +9,11 @@ class user {
   {
     $this->connection = new PDO("mysql:host=localhost;dbname=hikaye;charset=utf8;", "adminer", "adminer");
   }
-  public static function insertUser($kullanici_adi,$kullanici_sifre){
-    if (isset($_POST['kullanici_adi'])) {
+  public static function insertUser($kullanici_adi,$kullanici_sifre,$kullanici_mail){
       $returnObj = new self;
-      $kullanici = $returnObj->connection->prepare("SELECT * FROM kullanici where kullanici_adi=:kullanici_adi ");
-      $kullanici->execute(array('kullanici_adi' => $kullanici_adi));
-      $kullanici = $kullanici->fetch(PDO::FETCH_OBJ);
-      if ($kullanici) {
 
-      $kullanicidurum=1;
-        ?>
-        <input id="deneme" type="hidden" name="" value="<?php echo $kullanicidurum ?>">
-        <?php
-
-
-
-
-      }
-      else {
-        $deneme = $returnObj->connection->prepare("INSERT INTO kullanici(kullanici_adi,kullanici_sifre) values(:kullanici_adi,:kullanici_sifre) ");
-        $deneme->execute(array('kullanici_adi' => $kullanici_adi,'kullanici_sifre' => $kullanici_sifre));
+        $deneme = $returnObj->connection->prepare("INSERT INTO kullanici(kullanici_adi,kullanici_sifre,kullanici_mail) values(:kullanici_adi,:kullanici_sifre,:mail) ");
+        $deneme->execute(array('kullanici_adi' => $kullanici_adi,'kullanici_sifre' => $kullanici_sifre,'mail'=>$kullanici_mail));
 
         $kullanici1 = $returnObj->connection->prepare("SELECT * FROM kullanici where kullanici_adi=:kullanici_adi and kullanici_sifre=:kullanici_sifre");
         $kullanici1->execute(array('kullanici_adi' => $kullanici_adi,'kullanici_sifre'=>$kullanici_sifre));
@@ -37,13 +22,12 @@ class user {
 
 
         $_SESSION['kullanici_adi']=$kullanici1->kullanici_adi;
-        $_SESSION['kullanici_sifre']=$kullanici1->kullanici_sifre;
+        $_SESSION['kullanici_mail']=$kullanici1->kullanici_mail;
         $_SESSION['kullanici_id']=$kullanici1->kullanici_id;
-        header("Location: index.php?page=1");
 
 
-        }
-    }
+
+
   }
   public static function loginUser($kullanici_adi,$kullanici_sifre){
     $returnObj = new self;
@@ -54,14 +38,13 @@ class user {
       $_SESSION['kullanici_adi']=$kullanici->kullanici_adi;
       $_SESSION['kullanici_sifre']=$kullanici->kullanici_sifre;
       $_SESSION['kullanici_id']=$kullanici->kullanici_id;
+      return 1;
 
-
-      header("Location: index.php");
 
     }
     else {
-      $yanlisgiris=1;
-      ?> <input id="xd" type="hidden" name="" value="<?php echo $yanlisgiris ?>"> <?php
+      return 0;
+      
     }
   }
   public function userStory($seviye,$kullanici)
@@ -173,6 +156,7 @@ class hikaye
       }
     }
     if ($seviye==1) {
+
       $returnObj = new self;
       $videos = $returnObj->connection->prepare("SELECT alterbir_devambir,alterbir_devamiki,alterbir_devamuc FROM alternatifbir where alterbir_id=$hikayeid");
       $videos->execute();
@@ -186,12 +170,64 @@ class hikaye
     }
 
   }
+  public static function izin($hikaye,$seviye)
+  {
+    if ($seviye==0) {
+      $sayac=0;
+      $returnObj = new self;
+      if ($hikaye->hikaye_devamuc==NULL) {
+        $hikaye->haikye_devamuc="NULL";
+      }
+      $videos = $returnObj->connection->prepare("SELECT kullanici_adi FROM alternatifbir NATURAL JOIN kullanici where alterbir_id=$hikaye->hikaye_devambir or alterbir_id=$hikaye->hikaye_devamiki or alterbir_id=$hikaye->hikaye_devamuc");
+
+      $videos->execute();
+      $videos=$videos->fetchAll(PDO::FETCH_OBJ);
+
+        foreach ($videos as $value) {
+
+          if($_SESSION['kullanici_adi']==$value->kullanici_adi)
+          {
+            return true;
+          }
+          else {
+            $sayac=$sayac+1;
+          }
+
+        }
+        if ($sayac!=0) {
+          return false;
+        }
+    }
+    if ($seviye==1) {
+      $returnObj = new self;
+      if ($hikaye->alterbir_devamuc==NULL) {
+        $hikaye->alterbir_devamuc="NULL";
+      }
+      $videos = $returnObj->connection->prepare("SELECT kullanici_adi FROM alternatifiki NATURAL JOIN kullanici where alteriki_id=$hikaye->alterbir_devambir or alteriki_id=$hikaye->alterbir_devamiki or alteriki_id=$hikaye->alterbir_devamuc");
+      $videos->execute();
+      $videos=$videos->fetchAll(PDO::FETCH_OBJ);
+
+        foreach ($videos as $value) {
+          if($_SESSION['kullanici_adi']==$value->kullanici_adi)
+          {
+            return true;
+          }
+          else {
+            return false;
+          }
+        }
+    }
+
+
+
+
+  }
 
   public static function getAllVideos($page)
   {
     $returnObj = new self;
-    $limitPass = ($page - 1) * 5;
-    $videos = $returnObj->connection->prepare("SELECT * FROM anahikaye , kullanici where anahikaye.kullanici_id=kullanici.kullanici_id ORDER BY hikaye_id DESC LIMIT :pass , 5");
+    $limitPass = ($page - 1) * 7;
+    $videos = $returnObj->connection->prepare("SELECT * FROM anahikaye , kullanici where anahikaye.kullanici_id=kullanici.kullanici_id ORDER BY hikaye_id DESC LIMIT :pass , 7");
     $videos->bindValue(':pass', $limitPass, PDO::PARAM_INT);
 
     $videos->execute();
@@ -228,7 +264,7 @@ class hikaye
     $videos=$videos->fetchAll(PDO::FETCH_OBJ);
 
 
-    return count($videos)/5;
+    return count($videos)/7;
 
   }
   public static function insertStory($hikaye_baslik,$hikaye_metin,$seviye,$kullanici_id)

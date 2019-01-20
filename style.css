@@ -58,6 +58,7 @@ body{
 	padding-left: 5px;
 	padding-right: 5px;
 }
+
 textarea
 {
 	height: 200px;
@@ -91,4 +92,7 @@ textarea
 			bottom: 0;
 	    height: 100px;
 			width: 100%;
+}
+.my-4.baslik{
+ color:red;
 }

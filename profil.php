@@ -25,7 +25,7 @@ include 'wiew/header.php';
     <!-- Blog Entries Column -->
     <div class="col-md-12">
 
-      <h1 class="my-4">yazdığı ana Hikayeler
+      <h1 class="my-4 baslik">Yazdığı Ana Hikayeler
       </h1>
 <?php foreach ($rootStory as  $value): ?>
 
@@ -33,7 +33,7 @@ include 'wiew/header.php';
 
   <div class="card mb-4">
     <div class="card-body">
-      <h2 class="card-title"><?php echo $value->hikaye_baslik ?></h2>
+      <h2 align="center" class="card-title"><?php echo $value->hikaye_baslik ?></h2>
       <p class="card-text"><?php echo $value->hikaye_metin ?></p>
       <a href="altergör.php?hikaye_id=<?php echo $value->hikaye_id ?>&seviye=<?php echo $value->hikaye_seviye ?>" class="btn btn-primary">Hikayeye Git &rarr;</a>
       <?php if ($kendiProfili==1): ?>
@@ -47,7 +47,7 @@ include 'wiew/header.php';
     </div>
   </div>
 <?php endforeach; ?>
-<h2 class="my-4">yazdığı 1.devam Hikayeler
+<h2 class="my-4 baslik">Yazdığı 1.Devam Hikayeler
 </h2>
 
 <?php foreach ($alterStory as  $value): ?>
@@ -71,7 +71,7 @@ include 'wiew/header.php';
 <?php endforeach; ?>
 
 
-<h3 class="my-4">yazdığı 2.devam Hikayeler
+<h3 class="my-4 baslik">Yazdığı 2.Devam Hikayeler
 </h3>
 
 <?php foreach ($alterStory2 as  $value): ?>

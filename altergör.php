@@ -1,6 +1,7 @@
 <?php
 
 include 'class.php';
+
 if ($_GET['seviye']==1) {
   $Nhikaye = new alterhikaye();
 }
@@ -23,7 +24,6 @@ if ($_GET['seviye']==0) {
 include 'wiew/header.php';
 ?>
 <div class="container">
-
   <div class="row">
 
     <!-- Blog Entries Column -->
@@ -42,14 +42,16 @@ include 'wiew/header.php';
         <div class="card mb-4">
           <div class="card-body">
             <h2 align="center"class="card-title"><?php echo $Nhikaye->hikaye_baslik ?></h2>
-            <p class="card-text"><?php echo $Nhikaye->hikaye_metin ?><br> <a href="profil.php?kullanici=<?php echo $Nhikaye->kullanici_adi  ?>"><?php echo $Nhikaye->kullanici_adi ?></a>(<?php echo $Nhikaye->hikaye_tarih ?>)</p>
+            <p class="card-text"><?php echo $Nhikaye->hikaye_metin ?><br> <a href="profil/<?php echo $Nhikaye->kullanici_adi  ?>"><?php echo $Nhikaye->kullanici_adi ?></a>(<?php echo $Nhikaye->hikaye_tarih ?>)</p>
             <?php if (hikaye::dolumu($_GET['hikaye_id'],$_GET['seviye'])==false): ?>
-              <form class="" action="alterekle.php" method="post">
-                <input type="hidden" name="parentid" value="<?php echo $Nhikaye->hikaye_id ?>">
-                <input type="hidden" name="seviye" value="<?php echo $Nhikaye->hikaye_seviye ?>">
+
                 <?php if (isset($_SESSION['kullanici_adi'])): ?>
                   <?php if ($_SESSION['kullanici_adi']==$Nhikaye->kullanici_adi): ?>
+                  <?php elseif (hikaye::izin($Nhikaye,$Nhikaye->hikaye_seviye)):?>
                   <?php else: ?>
+                    <form class="" action="alterekle.php" method="post">
+                      <input type="hidden" name="parentid" value="<?php echo $Nhikaye->hikaye_id ?>">
+                      <input type="hidden" name="seviye" value="<?php echo $Nhikaye->hikaye_seviye ?>">
                     <button class="btn btn-primary"type="submit">devam ettir &rarr;</button>
 
                   <?php endif; ?>
@@ -69,28 +71,32 @@ include 'wiew/header.php';
       <?php if ($_GET['seviye']==1): ?>
         <div class="card mb-4">
           <div class="card-body">
-
-            <p class="card-text"><?php echo $asilHikaye->hikaye_metin ?><br> <a href="profil.php?kullanici=<?php echo $asilHikaye->kullanici_adi  ?>"><?php echo $asilHikaye->kullanici_adi ?></a>(<?php echo $asilHikaye->hikaye_tarih ?>)<a  href="altergör.php?hikaye_id=<?php echo $asilHikaye->hikaye_id ?>&seviye=<?php echo $asilHikaye->hikaye_seviye ?>" class="btn btn-link">Hikayeye git &rarr;</a>
+            <h2 align="center"class="card-title"><?php echo $asilHikaye->hikaye_baslik ?></h2>
+            <p class="card-text"><?php echo $asilHikaye->hikaye_metin ?><br> <a href="profil/<?php echo $asilHikaye->kullanici_adi  ?>"><?php echo $asilHikaye->kullanici_adi ?></a>(<?php echo $asilHikaye->hikaye_tarih ?>)<a  href="altergör/<?php echo $asilHikaye->hikaye_id ?>/<?php echo $asilHikaye->hikaye_seviye ?>" class="btn btn-link">Hikayeye git &rarr;</a>
             </p>
 
-            <p class="card-text"><?php echo $Nhikaye->alterbir_metin ?> <br> <a href="profil.php?kullanici=<?php echo $Nhikaye->kullanici_adi  ?>"><?php echo $Nhikaye->kullanici_adi ?></a>(<?php echo $Nhikaye->alterbir_tarih ?>)</p>
+            <p class="card-text"><?php echo $Nhikaye->alterbir_metin ?> <br> <a href="profil/<?php echo $Nhikaye->kullanici_adi  ?>"><?php echo $Nhikaye->kullanici_adi ?></a>(<?php echo $Nhikaye->alterbir_tarih ?>)</p>
             <?php if (hikaye::dolumu($_GET['hikaye_id'],$_GET['seviye'])==false): ?>
-              <form class="" action="alterekle.php" method="post">
-                <input type="hidden" name="parentid" value="<?php echo $Nhikaye->alterbir_id ?>">
-                <input type="hidden" name="seviye" value="<?php echo $Nhikaye->alterbir_seviye ?>">
+
 
                 <?php if (isset($_SESSION['kullanici_adi'])): ?>
                   <?php if ($_SESSION['kullanici_adi']==$Nhikaye->kullanici_adi): ?>
 
                   <?php elseif ($_SESSION['kullanici_adi']==$asilHikaye->kullanici_adi):?>
+                  <?php elseif (hikaye::izin($Nhikaye,$Nhikaye->alterbir_seviye)):?>
+
                   <?php else: ?>
+                    <form class="" action="alterekle" method="post">
+                      <input type="hidden" name="parentid" value="<?php echo $Nhikaye->alterbir_id ?>">
+                      <input type="hidden" name="seviye" value="<?php echo $Nhikaye->alterbir_seviye ?>">
 
                     <button class="btn btn-primary"type="submit">devam ettir &rarr;</button>
 
+</form>
                   <?php endif; ?>
 
                 <?php endif; ?>
-              </form>
+
             <?php endif; ?>
 
           </div>
@@ -122,10 +128,10 @@ include 'wiew/header.php';
 
           <div id="qwe"class="card mb-4">
             <div class="card-body">
-              <p id="metin"class="card-text qw"><?php echo $value->alterbir_metin?> <br> <a href="profil.php?kullanici=<?php echo $value->kullanici_adi  ?>"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alterbir_tarih ?>)</p>
-              <a href="altergör.php?hikaye_id=<?php echo $value->alterbir_id ?>&seviye=<?php echo $value->alterbir_seviye ?>&id=<?php echo $value->alterbir_parentid ?>" class="btn btn-primary">alternatifleri gör &rarr;</a>
+              <p id="metin"class="card-text qw"><?php echo $value->alterbir_metin?> <br> <a href="profil/<?php echo $value->kullanici_adi  ?>"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alterbir_tarih ?>)</p>
+              <a href="altergör/<?php echo $value->alterbir_id ?>/<?php echo $value->alterbir_seviye ?>/<?php echo $value->alterbir_parentid ?>" class="btn btn-primary">alternatifleri gör &rarr;</a>
               <?php if (count($alternatifler)>1): ?>
-                <a id="silme" class="btn btn-primary">Oku</a>
+                <button type="button" class="btn btn-primary silme" name="button">Oku</button>
               <?php endif; ?>
 
 
@@ -145,8 +151,8 @@ include 'wiew/header.php';
 
           <div class="card mb-4">
             <div class="card-body">
-              <p id="metin"class="card-text qw"><?php echo $value->alteriki_metin ?> <br> <a href="profil.php?kullanici=<?php echo $value->kullanici_adi  ?>"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alteriki_tarih ?>)</p>
-              <a href="hikayeoku.php?hikaye_id=<?php echo $value->alteriki_id ?>&seviye=<?php echo $value->alteriki_seviye ?>&id=<?php echo $value->alteriki_parentid ?>" class="btn btn-primary">Hikayeyi Oku&rarr;</a>
+              <p id="metin"class="card-text qw"><?php echo $value->alteriki_metin ?> <br> <a href="profil/<?php echo $value->kullanici_adi  ?>"><?php echo $value->kullanici_adi ?></a>(<?php echo $value->alteriki_tarih ?>)</p>
+              <a href="hikayeoku/<?php echo $value->alteriki_id ?>/<?php echo $value->alteriki_seviye ?>/<?php echo $value->alteriki_parentid ?>" class="btn btn-primary">Hikayeyi Oku&rarr;</a>
 
 
             </div>

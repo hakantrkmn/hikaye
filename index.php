@@ -32,7 +32,7 @@ include 'wiew/header.php';
 
           <!-- Blog Post -->
           <?php foreach ($anaHikayeler as $hikaye): ?>
-            <div onclick="location.href='altergör.php?hikaye_id=<?php echo $hikaye->hikaye_id ?>&seviye=<?php echo $hikaye->hikaye_seviye ?>';"class="card mb-4">
+            <div onclick="location.href='altergör/<?php echo $hikaye->hikaye_id ?>/<?php echo $hikaye->hikaye_seviye ?>';"class="card mb-4">
               <div class="card-body">
                 <h2 class="card-title" align="center"><?php echo $hikaye->hikaye_baslik ?></h2>
                 <p class="card-text"><?php echo mb_substr($hikaye->hikaye_metin,0,200) ?></p>
@@ -52,7 +52,7 @@ include 'wiew/header.php';
           <ul class="pagination justify-content-center mb-4">
             <?php for ($i=0;$i<$page;$i++): ?>
               <li class="page-item">
-                <a class="page-link" href="index.php?page=<?php echo $i +1 ?>"> <?php echo $i +1 ?></a>
+                <a class="page-link" href="index/<?php echo $i +1 ?>"> <?php echo $i +1 ?></a>
               </li>
 
             <?php endfor; ?>

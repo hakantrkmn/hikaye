@@ -1,6 +1,44 @@
 
 <?php
 include 'class.php';
+if (isset($_POST['insert']) and $_POST['insert']==1) {
+    user::insertUser($_POST['kullanici_adi'],$_POST['kullanici_sifre'],$_POST['kullanici_mail']);
+    $info['sa']=1;
+    echo json_encode($info);
+
+}
+if (isset($_POST['insert']) and $_POST['insert']==0) {
+
+    $returnObj = new user;
+    $kullanici = $returnObj->connection->prepare("SELECT * FROM kullanici where kullanici_mail=:kullanici_mail or kullanici_adi=:kullanici_adi ");
+    $kullanici->execute(array('kullanici_adi' => $_POST['kullanici_adi'],'kullanici_mail' => $_POST['kullanici_mail']));
+    $kullanici = $kullanici->fetch(PDO::FETCH_OBJ);
+    if ($kullanici) {
+      $data['status'] = 'ok';
+      $data['hatali'] = 1;
+    }
+    else{
+      $data['hatali'] = 0;
+    }
+
+    echo json_encode($data);
+
+}
+if (isset($_POST['login']) and $_POST['login']==0) {
+  $var =  user::loginUser($_POST['kullanici_adi'],$_POST['kullanici_sifre']);
+
+  if ($var==1) {
+    $giris['durum']=1;
+    echo json_encode($giris);
+  }
+  if ($var==0) {
+    $giris['durum']=0;
+    echo json_encode($giris);
+  }
+
+}
+
+
 if (isset($_GET['parentid'])) {
       $parentid = $_GET['parentid'];
   if ($_GET['seviye']==1) {
@@ -48,7 +86,7 @@ elseif($obj->hikaye_devamuc==NULL)
   $hikaye2 = $obj->connection->prepare("UPDATE anahikaye set hikaye_devamuc=$val where hikaye_id = $parentid ");
   $hikaye2->execute();
 }
-header("Location: altergör.php?hikaye_id=$parentid&seviye=0");
+header("Location: altergör/$parentid/0");
 
 
 }
@@ -81,6 +119,6 @@ elseif($obj2->alterbir_devamuc==NULL) {
   $hikaye2->execute();
 }
 
-header("Location: altergör.php?hikaye_id=$val3&seviye=1&id=$val2");
+header("Location: altergör/$val3/1/$val2");
 
 }
