@@ -22,7 +22,7 @@ if ($_POST['mail']) {
       $mail->Host = 'smtpout.europe.secureserver.net';  // Specify main and backup SMTP servers
       $mail->SMTPAuth = true;                               // Enable SMTP authentication
       $mail->Username = "support@alterstory.org";                 // SMTP username
-      $mail->Password = 'Hakan6161!';                           // SMTP password
+      $mail->Password = '***';                           // SMTP password
       $mail->SMTPSecure = 'tls';
       $mail->CharSet = "UTF-8";                         // Enable TLS encryption, `ssl` also accepted
       $mail->Port = 80;                                    // TCP port to connect to
