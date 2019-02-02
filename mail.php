@@ -22,7 +22,7 @@ if ($_POST['mail']) {
       $mail->Host = 'smtpout.europe.secureserver.net';  // Specify main and backup SMTP servers
       $mail->SMTPAuth = true;                               // Enable SMTP authentication
       $mail->Username = "support@alterstory.org";                 // SMTP username
-      $mail->Password = '***';                           // SMTP password
+      $mail->Password = '***!';                           // SMTP password
       $mail->SMTPSecure = 'tls';
       $mail->CharSet = "UTF-8";                         // Enable TLS encryption, `ssl` also accepted
       $mail->Port = 80;                                    // TCP port to connect to
@@ -809,7 +809,7 @@ if ($_POST['mail']) {
                                                                                       </td>
                                                                                   </tr>
                                                                                   <tr>
-                                                                                      <td class="esd-block-button es-p10" align="center"> <span class="es-button-border" style="background: none 0% 0% repeat scroll rgb(255, 255, 255);"> <a href="mailto:hakan_61_601@hotmail.com" class="es-button" target="_blank" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; border-color: rgb(255, 255, 255); color: rgb(38, 164, 211); border-width: 15px 25px;">Geri Bildirim</a> </span> </td>
+                                                                                      <td class="esd-block-button es-p10" align="center"> <span class="es-button-border" style="background: none 0% 0% repeat scroll rgb(255, 255, 255);"> <a href="mailto:support@alterstory.org" class="es-button" target="_blank" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; border-color: rgb(255, 255, 255); color: rgb(38, 164, 211); border-width: 15px 25px;">Geri Bildirim</a> </span> </td>
                                                                                   </tr>
                                                                               </tbody>
                                                                           </table>

@@ -16,10 +16,6 @@ include 'wiew/header.php';
   <div id="basari"style="display: none;" align="center" class="alert alert-success">
 <strong>Kayıt Başarılı</strong></div>
 
-        <?php if ($yanlisgiris==1): ?>
-          <?php echo "yanlis giriş yaptınız" ?>
-
-        <?php endif; ?>
         <div class="form-group">
 
             <input id="kadi" name="kullanici_adi" type="text" class="form-control" placeholder="Kullanıcı Adı" required="required">

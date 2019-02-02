@@ -11,7 +11,7 @@
         </li>
         <li class="list-inline-item">
 
-          <a href="mailto:hakan_61_601@hotmail.com" class="font-weight-bold"><i class="fas fa-envelope mr-1"></i>  Mail</a>
+          <a href="mailto:support@alterstory.org" class="font-weight-bold"><i class="fas fa-envelope mr-1"></i>  Mail</a>
 
         </li>
       </ul>
