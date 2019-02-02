@@ -5,14 +5,14 @@ include 'wiew/header.php';
 
 
       <!-- Page Content -->
-      <div class="container">
+      <div class="container sd">
 
         <div class="row">
 
           <!-- Blog Entries Column -->
           <div class="col-md-12">
 
-            <h1 class="my-4">Hikaye </h1>
+            <h1 class="my-4 ">Hikayeni Başlat </h1>
             <!-- Blog Post -->
 
             <div class="card mb-4">
@@ -23,7 +23,7 @@ include 'wiew/header.php';
                 <textarea name="hikaye-metin" onkeyup="charcountupdate(this.value)" id="textbox"> </textarea>
                 <div class="buton">
                   <strong><span id="charcount"></span> karakter</strong>
-                  <button id="buton" type="submit" class="btn btn-primary">gönder</button>
+                  <button id="buton" onclick="karakter()" type="submit" class="btn btn-primary">Başlat</button>
                 </div>
               </form>
             </div>
@@ -35,26 +35,8 @@ include 'wiew/header.php';
           <!-- /.row -->
 
         </div>
+
+        </div>
         <!-- /.container -->
-
-        <!-- Footer -->
-
-        <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-      </body>
-<script>
-$( "#buton" ).click(function(event){
-  if ($( "#textbox" ).val().length<50) {
-    swal({
-      title: 'Az Karakter!',
-      text: 'Minimum Karakter Sayısı 50',
-      icon: 'info',
-      button: 'Anladım'
-    })
-    event.preventDefault();
-}
-})
-</script>
-      </html>
+<?php             include 'wiew/footer.php';
+ ?>

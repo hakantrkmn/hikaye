@@ -11,7 +11,7 @@ include 'wiew/header.php';
 
 
 <!-- Page Content -->
-<div class="container">
+<div class="container sd">
 
   <div class="row">
 
@@ -27,10 +27,10 @@ include 'wiew/header.php';
         <div class="card-body">
           <h2 align="center"class="card-title"><?php echo $anahikaye->hikaye_baslik ?></h2>
           <p class="card-text"><?php echo $anahikaye->hikaye_metin ?> <br> <a href="profil.php?kullanici=<?php echo $anahikaye->kullanici_adi  ?>"><?php echo $anahikaye->kullanici_adi ?></a>(<?php echo $anahikaye->hikaye_tarih ?>)
-            <a href="altergör.php?hikaye_id=<?php echo $anahikaye->hikaye_id ?>&seviye=<?php echo $anahikaye->hikaye_seviye ?>">Hikayeye git &rarr;</a></p>
+            <a href="altergör.php?hikaye_id=<?php echo $anahikaye->hikaye_id ?>&seviye=<?php echo $anahikaye->hikaye_seviye ?>">Hikayeye git <i class="fas fa-book-open"></i></a></p>
 
             <!–– TIKLANAN HİKAYENİN BİRİNCİ ALTERNATİFİ  ––>
-            <p class="card-text"><?php echo $birincialternatif->alterbir_metin ?> <br> <a href="profil.php?kullanici=<?php echo $birincialternatif->kullanici_adi  ?>"><?php echo $birincialternatif->kullanici_adi ?></a>(<?php echo $birincialternatif->alterbir_tarih ?>)<a href="altergör.php?hikaye_id=<?php echo $birincialternatif->alterbir_id ?>&seviye=<?php echo $birincialternatif->alterbir_seviye ?>&id=<?php echo $birincialternatif->alterbir_parentid ?>">Hikayeye git &rarr;</a></p>
+            <p class="card-text"><?php echo $birincialternatif->alterbir_metin ?> <br> <a href="profil.php?kullanici=<?php echo $birincialternatif->kullanici_adi  ?>"><?php echo $birincialternatif->kullanici_adi ?></a>(<?php echo $birincialternatif->alterbir_tarih ?>)<a href="altergör.php?hikaye_id=<?php echo $birincialternatif->alterbir_id ?>&seviye=<?php echo $birincialternatif->alterbir_seviye ?>&id=<?php echo $birincialternatif->alterbir_parentid ?>">Hikayeye git <i class="fas fa-book-open"></i></a></p>
 
             <!–– TIKLANAN HİKAYENİN KENDİSİ ––>
             <p class="card-text"><?php echo $Nhikaye->alteriki_metin ?> <br> <a href="profil.php?kullanici=<?php echo $Nhikaye->kullanici_adi  ?>"><?php echo $Nhikaye->kullanici_adi ?></a>(<?php echo $Nhikaye->alteriki_tarih ?>)</p>
@@ -39,17 +39,6 @@ include 'wiew/header.php';
       </div>
     </div>
   </div>
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-    </div>
-    <!-- /.container -->
-  </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
+  <?php             include 'wiew/footer.php';
+ ?>

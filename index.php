@@ -19,14 +19,14 @@ $page = hikaye::getPage();
 include 'wiew/header.php';
 ?>
     <!-- Page Content -->
-    <div class="container">
+    <div class="container sd">
 
       <div class="row">
 
         <!-- Blog Entries Column -->
-        <div class="col-md-10">
+        <div class="col-md-12">
 
-          <h1 class="my-4">Hikayeler
+          <h1 class="my-4 ">Hikayeler
 
           </h1>
 
@@ -49,7 +49,7 @@ include 'wiew/header.php';
 
 
           <!-- Pagination -->
-          <ul class="pagination justify-content-center mb-4">
+          <ul class="pagination justify-content-center pg-blue pagination-lg">
             <?php for ($i=0;$i<$page;$i++): ?>
               <li class="page-item">
                 <a class="page-link" href="index/<?php echo $i +1 ?>"> <?php echo $i +1 ?></a>
@@ -60,30 +60,17 @@ include 'wiew/header.php';
 
         </div>
 
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
 
-          <!-- Search Widget -->
-
-
-          <!-- Categories Widget -->
-
-          <!-- Side Widget -->
-
-        </div>
 
       </div>
       <!-- /.row -->
 
     </div>
-    <!-- /.container -->
-
+    
     <!-- Footer -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  </body>
-
-</html>
+<?php
+include 'wiew/footer.php';
+  ?>

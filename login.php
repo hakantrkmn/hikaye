@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -22,6 +23,7 @@ $yanlisgiris;
 
 
 
+<div class="container sd">
 
  <div class="login-form">
     <form id="myform" action="" method="post">
@@ -36,43 +38,16 @@ $yanlisgiris;
             <input id="ksifre" type="password" name="kullanici_sifre" class="form-control" placeholder="Şifre" required="required">
         </div>
         <div class="form-group">
-            <button id="giris" type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+            <button onclick="sorgu2()" id="giris" type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+            <a  id="giris" href="kayit" class="btn btn-primary btn-block">Kayıt Ol</a>
         </div>
     </form>
-    <p class="text-center"><a class="btn btn-primary" href="kayit.php">Kayıt Ol</a></p>
+
 </div>
-<script >
 
-$("#giris").click(function(e){
+</div>
 
-
-var kullanici_adi = $("#kadi").val();
-var kullanici_sifre = $("#ksifre").val();
-e.preventDefault();
-if (document.getElementById('myform').checkValidity()==true) {
-    $.ajax({
-      type:'POST',
-      url:'yukle.php',
-      dataType: "json",
-      data:{kullanici_adi:kullanici_adi,kullanici_sifre:kullanici_sifre,login:0},
-      success:function(giris){
-
-        if (giris.durum == '1')
-        {
-          $(location).attr('href', 'index/1');
-
-        }
-        else{
-          $("#asd").css("display","block");
-        }
-      }
-    });
-
-
-}
-
-})
-
-</script>
 <?php
 include 'wiew/footer.php';
+
+?>

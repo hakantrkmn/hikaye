@@ -2,7 +2,8 @@
 <?php
 include 'class.php';
 if (isset($_POST['insert']) and $_POST['insert']==1) {
-    user::insertUser($_POST['kullanici_adi'],$_POST['kullanici_sifre'],$_POST['kullanici_mail']);
+  $sifre = hash('sha256', $_POST['kullanici_sifre']);
+    user::insertUser($_POST['kullanici_adi'],$sifre,$_POST['kullanici_mail']);
     $info['sa']=1;
     echo json_encode($info);
 
@@ -25,7 +26,8 @@ if (isset($_POST['insert']) and $_POST['insert']==0) {
 
 }
 if (isset($_POST['login']) and $_POST['login']==0) {
-  $var =  user::loginUser($_POST['kullanici_adi'],$_POST['kullanici_sifre']);
+    $sifre = hash('sha256', $_POST['kullanici_sifre']);
+  $var =  user::loginUser($_POST['kullanici_adi'],$sifre);
 
   if ($var==1) {
     $giris['durum']=1;

@@ -44,7 +44,7 @@ class user {
     }
     else {
       return 0;
-      
+
     }
   }
   public function userStory($seviye,$kullanici)
@@ -278,7 +278,7 @@ class hikaye
         'hikaye_seviye' => $seviye,
         'kullanici_id' => $kullanici_id,
       ));
-      header("Location: index.php?page=1");
+      header("Location: index/1");
 
   }
   public function insertAlterStory($hikaye_metin,$kullanici_id)

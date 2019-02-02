@@ -29,6 +29,7 @@ float: right;
   text-overflow: ellipsis;
 }
 
+
 .card{
 	border-radius: 0px;
 
@@ -36,10 +37,20 @@ float: right;
 body{
 	background-image: url("background.png");
 }
+
 .card-title
 {
 	font-family: sans-serif;
 
+}
+.page-footer
+{
+	position: relative;
+  margin: 0;
+}
+.container.sd
+{
+	min-height: 800px;
 }
 .card.mb-4
 {
@@ -73,7 +84,7 @@ textarea
 }
 .my-4
 {
-	color: white;
+	color: #651400;
 	text-align: center;
 }
 
