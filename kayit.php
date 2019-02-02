@@ -2,7 +2,7 @@
 
 include 'class.php';
 $kullanicidurum;
-$yanlisgiris =0;
+
 
 include 'wiew/header.php';
 ?>
