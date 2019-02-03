@@ -48,6 +48,7 @@ include 'wiew/header.php';
                 <?php if (isset($_SESSION['kullanici_adi'])): ?>
                   <?php if ($_SESSION['kullanici_adi']==$Nhikaye->kullanici_adi): ?>
                   <?php elseif (hikaye::izin($Nhikaye,$Nhikaye->hikaye_seviye)):?>
+                  <?php elseif ($_SESSION['kullanici_ban']==1): ?>
                   <?php else: ?>
                     <form class="" action="alterekle.php" method="post">
                       <input type="hidden" name="parentid" value="<?php echo $Nhikaye->hikaye_id ?>">
@@ -84,7 +85,7 @@ include 'wiew/header.php';
 
                   <?php elseif ($_SESSION['kullanici_adi']==$asilHikaye->kullanici_adi):?>
                   <?php elseif (hikaye::izin($Nhikaye,$Nhikaye->alterbir_seviye)):?>
-
+                  <?php elseif ($_SESSION['kullanici_ban']==1): ?>
                   <?php else: ?>
                     <form class="" action="alterekle" method="post">
                       <input type="hidden" name="parentid" value="<?php echo $Nhikaye->alterbir_id ?>">

@@ -8,6 +8,16 @@ if (isset($_POST['insert']) and $_POST['insert']==1) {
     echo json_encode($info);
 
 }
+if (isset($_POST['ban']) and $_POST['ban']==1) {
+    $kullanici=user::getUser();
+
+    echo json_encode($kullanici);
+
+}
+if (isset($_POST['banla']) ) {
+$_SESSION["kullanici_ban"]=1;
+
+}
 if (isset($_POST['insert']) and $_POST['insert']==0) {
 
     $returnObj = new user;

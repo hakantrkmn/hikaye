@@ -6,6 +6,39 @@
 
 $(window).bind("load", function() {
 
+	setInterval(function(){
+		$.ajax({
+		 type:'POST',
+		 url:'yukle.php',
+		 dataType: "json",
+		 data:{ban:1},
+		 success:function(deneme){
+			 if(deneme["kullanici_ban"]==1)
+			 {
+				 $.ajax({
+					type:'POST',
+					url:'yukle.php',
+					dataType: "json",
+					data:{banla:1},
+					success:function(){
+
+
+					}
+				});
+
+				return 1;
+
+			 }
+
+
+
+
+
+		 }
+	 });
+
+ },2000)
+
 	$('#dogrulama').keyup(function(){
 		if($('#ksifre').val()!=$('#dogrulama').val())
 		{
@@ -215,6 +248,14 @@ function noUser(e){
 	swal({
 		title: 'Giriş Yapmalısın',
 		text: 'Hikaye yazabilmek için giriş yapmalısın',
+		icon: 'error',
+		button: 'Anladım'
+	})
+}
+function banUser(e){
+	swal({
+		title: 'Banlısın',
+		text: 'Banlı olduğun için bir süre hikaye yazamayacaksın',
 		icon: 'error',
 		button: 'Anladım'
 	})

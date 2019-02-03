@@ -24,6 +24,7 @@ class user {
         $_SESSION['kullanici_adi']=$kullanici1->kullanici_adi;
         $_SESSION['kullanici_mail']=$kullanici1->kullanici_mail;
         $_SESSION['kullanici_id']=$kullanici1->kullanici_id;
+        $_SESSION['kullanici_ban']=$kullanici->kullanici_ban;
 
 
 
@@ -38,6 +39,7 @@ class user {
       $_SESSION['kullanici_adi']=$kullanici->kullanici_adi;
       $_SESSION['kullanici_sifre']=$kullanici->kullanici_sifre;
       $_SESSION['kullanici_id']=$kullanici->kullanici_id;
+      $_SESSION['kullanici_ban']=$kullanici->kullanici_ban;
       return 1;
 
 
@@ -73,6 +75,17 @@ class user {
       else {
         return false;
       }
+  }
+  public static function getUser()
+  {
+    $returnObj = new self;
+    $kullanici = $returnObj->connection->prepare("SELECT * FROM kullanici where kullanici_id=:kullanici_id");
+    $kullanici->execute(array('kullanici_id'=>$_SESSION['kullanici_id']));
+    $kullanici = $kullanici->fetch(PDO::FETCH_OBJ);
+    return $kullanici;
+
+
+
   }
 
 

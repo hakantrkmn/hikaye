@@ -1,6 +1,9 @@
 <?php
 include 'class.php';
 include 'wiew/header.php';
+
+  if (user::kullanicivarmi() and $_SESSION["kullanici_ban"]==0) {
+
   ?>
 
 
@@ -37,6 +40,14 @@ include 'wiew/header.php';
         </div>
 
         </div>
+      <?php }
+      else{
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+      }
+
+
+         ?>
         <!-- /.container -->
 <?php             include 'wiew/footer.php';
  ?>

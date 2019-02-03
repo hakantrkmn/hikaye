@@ -3,7 +3,7 @@
   include 'class.php';
 
   //kullanici varsa ekleyebilir yoksa önceki sayfaya yönlendirilir
-  if (user::kullanicivarmi()) {
+  if (user::kullanicivarmi() and $_SESSION["kullanici_ban"]==0) {
 
     if ($_POST['seviye']==1) {
       $Nhikaye = new alterhikaye();
